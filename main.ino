@@ -9,7 +9,9 @@ class LedBoard
 {
     public:
         CRGB board[];
+        
         LedBoard(CRGB board[]);
+
         void setLed(int x, int y, int r, int g, int b)
         {
             // Get internal id for the LED
@@ -25,16 +27,25 @@ class LedBoard
             // Set to correct color
             this->board[id] = 65536 * r + 256 * g + b;
         }
+
+        void show()
+        {
+            FastLED.show();
+        }
+
+
     private:
 };
 
 CRGB leds[NUM_LEDS];
+LedBoard board {leds};
 
 void setup()
 {
     FastLED.addLeds<WS2811, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
 }
 
+// ! DEPRECATED
 void showAndWait(int time)
 {
     FastLED.show();
@@ -42,6 +53,7 @@ void showAndWait(int time)
 }
 
 // Get the actual id of the LED based on an x position and y position.
+// ! DEPRECATED
 int getLedId(int x, int y)
 {
     int led = 0;
@@ -56,6 +68,7 @@ int getLedId(int x, int y)
     return led;
 }
 
+// ! DEPRECATED
 long rgb(int red, int green, int blue)
 {
     return 65536 * red + 256 * green + blue;
