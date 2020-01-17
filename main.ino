@@ -8,9 +8,8 @@
 class LedBoard
 {
     public:
-        CRGB board[];
+        CRGB board[NUM_LEDS];
         
-        LedBoard(CRGB board[]);
 
         void setLed(int x, int y, int r, int g, int b)
         {
@@ -28,62 +27,54 @@ class LedBoard
             this->board[id] = 65536 * r + 256 * g + b;
         }
 
-        void show()
+        void clearLed(int x, int y)
         {
-            FastLED.show();
+            this->setLed(x, y, 0, 0, 0);
         }
 
-
-    private:
+        void clearAll()
+        {
+            for (int i = 0; i < NUM_LEDS; i++)
+            {
+                this->board[i] = 0;
+            }
+        }
 };
 
 CRGB leds[NUM_LEDS];
-LedBoard board {leds};
+LedBoard Ex32;
 
 void setup()
 {
-    FastLED.addLeds<WS2811, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
-}
-
-// ! DEPRECATED
-void showAndWait(int time)
-{
-    FastLED.show();
-    delay(time);
-}
-
-// Get the actual id of the LED based on an x position and y position.
-// ! DEPRECATED
-int getLedId(int x, int y)
-{
-    int led = 0;
-    led += 8 * x;
-    if (x % 2 == 1)
-    {
-        led += 7 - y;
-    } else {
-        led += y;
+    for (int i = 0; i < 256; i++) {
+        Ex32.board[i] = leds[i];
     }
-    // led = 255 - led;
-    return led;
+    FastLED.addLeds<WS2811, DATA_PIN, COLOR_ORDER>(Ex32.board, NUM_LEDS);
 }
 
-// ! DEPRECATED
-long rgb(int red, int green, int blue)
-{
-    return 65536 * red + 256 * green + blue;
-}
+int x = 0;
+int y = 0;
+boolean drawing = true;
 
 void loop()
 {
-    leds[getLedId(7, 7)] = rgb(255, 0, 0);
-    showAndWait(750);
-    leds[getLedId(7, 7)] = rgb(0, 255, 0);
-    showAndWait(750);
-    leds[getLedId(7, 7)] = rgb(0, 0, 255);
-    showAndWait(750);
-    leds[getLedId(7, 7)] = rgb(255, 255, 255);
-    showAndWait(750);
-    leds[getLedId(7, 7)] = rgb(0, 0, 0);
-    showAndWait(750);
+    if (drawing)
+    {
+        Ex32.setLed(x, y, 100, 0, 0);
+    } else {
+        Ex32.clearLed(x, y);
+    }
+    x++;
+    if (x > 31)
+    {
+        x = 0;
+        y++;
+    }
+    if (y > 7)
+    {
+        y = 0;
+        drawing = !drawing;
+    }
+    FastLED.show();
+    delay(20);
 }
