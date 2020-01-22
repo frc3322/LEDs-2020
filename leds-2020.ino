@@ -51,8 +51,6 @@ int greenY[5] {7, 7, 7, 7, 7};
 
 void loop()
 {
-
-
     clearAll();
     
     setLeds(redX, redY, 5, CRGB::DarkRed);
