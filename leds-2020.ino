@@ -1,4 +1,5 @@
 #include <FastLED.h>
+#include <Wire.h>
 
 #define NUM_LEDS        256
 #define DATA_PIN        3
@@ -11,6 +12,17 @@
 #define LASER_POWERED1  0x9A8600
 #define LASER_POWERED2  0x96A055
 #define LASER_POWERED3  0xD8D085
+
+enum Animations
+{
+    SHOOT,
+    TARGET,
+    IDLE
+};
+
+Animations currAnim = Animations::IDLE;
+
+CRGB alliance = CRGB::Green;
 
 // Array containing the LEDs in the strip.
 CRGB leds[NUM_LEDS];
@@ -348,15 +360,43 @@ void LaserAnimation(uint16_t frame, CRGB alliance)
 } 
 
 
+//! ----------------------------------------
+//! START OF MAIN CODE
+//! ----------------------------------------
+
+
+void receive(int len)
+{
+    byte input = Wire.read();
+    
+    while (0 < Wire.available())
+    {
+        byte a = Wire.read();
+    }
+
+    if (input == 255)
+    {
+        alliance = CRGB::Red;
+    } else if (input == 254) {
+        alliance = CRGB::Blue;
+    } else if (input == 253) {
+        alliance = CRGB::Green;
+    } else if (input == 0) {
+        currAnim = Animations::SHOOT;
+    } else if (input == 1) {
+        currAnim = Animations::TARGET;
+    }
+
 void setup()
 {
     FastLED.addLeds<WS2811, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
     Serial.begin(9600);
+
+    Wire.begin();
+    Wire.onReceive(receive);
 }
 
 uint16_t frame {0};
-
-CRGB alliance = CRGB::Green;
 
 void loop()
 {
