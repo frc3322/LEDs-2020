@@ -62,68 +62,68 @@ void scroll(CRGB colors[], int cutoffL, int cutoffR, int position)
 }
 
 // Displays a short pong animation on the LEDs.
-void pong(uint16_t frameNo, CRGB alliance)
-{
-    int scFrame = frameNo % 32;
-    frameNo = frameNo % 12;
-    
-    CRGB colors[8] {
-        CRGB::DarkRed,
-        CRGB::DarkRed,
-        CRGB::DarkRed,
-        CRGB::DarkRed,
-        CRGB::DarkRed,
-        CRGB::DarkRed,
-        CRGB::DarkRed,
-        CRGB::DarkRed
-    };
-
-    for (int i = 0; i <= scFrame; i++)
-    {
-        scroll(colors, 0, 0, i);
-    }
-    if (frameNo == 0)
-    {
-        short a[9] {1, 2, 3, 4, 1, 2, 3, 4, 3};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 4};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else if (frameNo == 1)
-    {
-        short a[9] {1, 2, 3, 4, 1, 2, 3, 4, 4};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 5};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else if (frameNo == 2)
-    {
-        short a[9] {2, 3, 4, 5, 2, 3, 4, 5, 5};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 6};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else if (frameNo == 3)
-    {
-        short a[9] {3, 4, 5, 6, 3, 4, 5, 6, 6};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 5};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else if (frameNo == 4)
-    {
-        short a[9] {4, 5, 6, 7, 4, 5, 6, 7, 7};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 4};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else if (frameNo == 5)
-    {
-        short a[9] {5, 6, 7, 8, 5, 6, 7, 8, 9};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 2};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else if (frameNo == 6)
-    {
-        short a[9] {6, 7, 8, 9, 6, 7, 8, 9, 10};
-        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 1};
-        setLeds(a, b, 9, CRGB::Blue);
-    } else
-    {
-        short a[12] {7, 7, 7, 9,  11, 11, 11, 12, 12, 13, 13, 13};
-        short b[12] {2, 3, 4, 3,   2,  3,  4,  2,  4,  2,  3,  4};
-        setLeds(a, b, 12, CRGB::Blue);
-    }
-}
+//void pong(uint16_t frameNo, CRGB alliance)
+//{
+//    int scFrame = frameNo % 32;
+//    frameNo = frameNo % 12;
+//    
+//    CRGB colors[8] {
+//        CRGB::DarkRed,
+//        CRGB::DarkRed,
+//        CRGB::DarkRed,
+//        CRGB::DarkRed,
+//        CRGB::DarkRed,
+//        CRGB::DarkRed,
+//        CRGB::DarkRed,
+//        CRGB::DarkRed
+//    };
+//
+//    for (int i = 0; i <= scFrame; i++)
+//    {
+//        scroll(colors, 0, 0, i);
+//    }
+//    if (frameNo == 0)
+//    {
+//        short a[9] {1, 2, 3, 4, 1, 2, 3, 4, 3};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 4};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else if (frameNo == 1)
+//    {
+//        short a[9] {1, 2, 3, 4, 1, 2, 3, 4, 4};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 5};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else if (frameNo == 2)
+//    {
+//        short a[9] {2, 3, 4, 5, 2, 3, 4, 5, 5};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 6};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else if (frameNo == 3)
+//    {
+//        short a[9] {3, 4, 5, 6, 3, 4, 5, 6, 6};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 5};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else if (frameNo == 4)
+//    {
+//        short a[9] {4, 5, 6, 7, 4, 5, 6, 7, 7};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 4};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else if (frameNo == 5)
+//    {
+//        short a[9] {5, 6, 7, 8, 5, 6, 7, 8, 9};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 2};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else if (frameNo == 6)
+//    {
+//        short a[9] {6, 7, 8, 9, 6, 7, 8, 9, 10};
+//        short b[9] {0, 0, 0, 0, 7, 7, 7, 7, 1};
+//        setLeds(a, b, 9, CRGB::Blue);
+//    } else
+//    {
+//        short a[12] {7, 7, 7, 9,  11, 11, 11, 12, 12, 13, 13, 13};
+//        short b[12] {2, 3, 4, 3,   2,  3,  4,  2,  4,  2,  3,  4};
+//        setLeds(a, b, 12, CRGB::Blue);
+//    }
+//}
 
 void LaserAnimation(uint16_t frame, CRGB alliance)
 {
@@ -347,6 +347,90 @@ void LaserAnimation(uint16_t frame, CRGB alliance)
   }
 } 
 
+void TargetAnimation(uint16_t frame, CRGB alliance) {
+  frame = frame % 51;
+
+  if (frame == 2) {
+    leds[getId(0,1)] = alliance;
+    leds[getId(0,7)] = alliance;
+  }
+  if (frame == 3) {
+    short x[10] = {3, 0,1, 2, 0,2, 2, 0,1, 3};
+    short y[10] = {1, 2,2, 3, 4,4, 5, 6,6, 7};
+    setLeds(x, y, 10, alliance);
+  }
+  short n = 0;
+  if (frame == 5) {
+    n += 3;
+  }
+  if (frame == 6) {
+    n += 6;
+  }
+  if (frame == 7) {
+    n += 9;
+  }
+  if (frame == 8 || frame == 18) {
+    n += 12;
+  }
+  if (frame == 9) {
+    n += 14;
+  }
+  if (frame == 10) {
+    n += 16;
+  }
+  if (frame == 11 || frame == 16) {
+    n += 17;
+  }
+  if (frame >= 12 && frame <= 15) {
+    n += 18;
+  }
+  if (frame == 17) {
+    n += 15;
+  }
+  if (frame == 19 || frame == 20) {
+    n += 11;
+  }
+  if (frame >= 4 && frame <= 20) {
+    short x[17] {0+n,6+n, 2+n,3+n,4+n, 1+n,5+n, 1+n,3+n,5+n, 1+n,5+n, 2+n,3+n,4+n, 0+n,6+n};
+    short y[17] {1,1, 2,2,2, 3,3, 4,4,4, 5,5, 6,6,6, 7,7};
+    setLeds(x, y, 17, alliance);
+  }
+  if ((frame >= 21 && frame <= 33) || (frame >= 37 && frame <= 39) || (frame >= 43 && frame <= 45)  || (frame >= 49 && frame <= 51)) {
+    short x[13] = {13,14,15, 12,16, 12,14,16, 12,16, 13,14,15};  
+    short y[13] = {2, 2, 2,  3, 3,  4, 4, 4,  5, 5,  6, 6, 6};
+    setLeds(x, y, 13, alliance);
+  }
+  if (frame == 21) {
+    short x[3] = {12, 18, 10};
+    short y[3] = {0,2,6};
+    setLeds(x, y, 3, alliance);
+  }
+  if (frame == 21 || frame == 22) {
+    short x[3] = {12, 18, 10};
+    short y[3] = {0,2,6};
+    setLeds(x, y, 3, alliance);
+  }
+  if (frame == 23 || frame == 24) {
+    short x[3] = {13, 18, 10};
+    short y[3] = {0,3,5};
+    setLeds(x, y, 3, alliance);
+  }
+  if (frame == 23 || frame == 24) {
+    short x[3] = {13, 18, 10};
+    short y[3] = {0,3,5};
+    setLeds(x, y, 3, alliance);
+  }
+  if (frame == 25 || frame == 26) {
+    short x[4] = {14,11,17,14};
+    short y[4] = {1, 4, 4, 7};
+    setLeds(x, y, 4, alliance);
+  }
+  if (frame == 29 || frame == 30) {
+    short x[4] = {14,13,15,14};
+    short y[4] = {3, 4, 4, 5};
+    setLeds(x, y, 4, alliance);
+  }
+}
 
 void setup()
 {
@@ -362,8 +446,9 @@ void loop()
 {
     clearAll();
 
-    LaserAnimation(frame, alliance);
-    
+    TargetAnimation(frame, alliance);
+
+        
     FastLED.show();
     delay(50);
     frame++;
