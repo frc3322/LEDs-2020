@@ -3953,6 +3953,7 @@ if(frame == 51) {
 
 void receive(int len)
 {
+  Serial.println("Data received");
   byte input = Wire.read();
 
   while (0 < Wire.available())
@@ -4005,7 +4006,7 @@ void setup()
   FastLED.addLeds<WS2811, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
   Serial.begin(9600);
 
-  Wire.begin();
+  Wire.begin(52);
   Wire.onReceive(receive);
 }
 
